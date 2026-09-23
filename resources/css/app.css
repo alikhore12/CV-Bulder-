@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Figtree, ui-sans-serif, system-ui, sans-serif;
+}
+
+form > section > div:first-child h2 {
+    display: inline-block;
+    border-radius: 0.5rem;
+    background-color: var(--cv-theme, #4f46e5);
+    padding: 0.55rem 0.85rem;
+    color: white;
+}
+
+article h3 {
+    display: inline-block;
+    border-radius: 0.25rem;
+    background-color: var(--cv-theme, #4f46e5);
+    padding: 0.25rem 0.5rem;
+    color: white !important;
+}
+
+article .text-xs {
+    font-size: 0.85rem !important;
+    line-height: 1.55 !important;
+}
+
+article [class*="text-[10px]"] {
+    font-size: 0.72rem !important;
+    line-height: 1.45 !important;
+}
+
+
+@media print {
+    nav,
+    .cv-builder-header,
+    .cv-editor,
+    .cv-preview > div:first-child {
+        display: none !important;
+    }
+
+    .cv-builder-page {
+        min-height: 0 !important;
+        background: white !important;
+    }
+
+    .cv-preview {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+    }
+
+    .cv-preview article {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+    }
+}
