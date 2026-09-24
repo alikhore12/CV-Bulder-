@@ -45,7 +45,11 @@ article [class*="text-[10px]"] {
 }
 
 .cv-preview article {
-    border: 5px solid var(--cv-theme, #4f46e5);
+    border: 10px solid var(--cv-theme, #4f46e5);
+}
+
+.cv-preview article section:has(table) {
+    display: block !important;
 }
 
 @media print {
