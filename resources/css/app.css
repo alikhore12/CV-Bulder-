@@ -40,6 +40,9 @@ article [class*="text-[10px]"] {
     line-height: 1.45 !important;
 }
 
+.cv-preview article header img {
+    border: 2px solid var(--cv-theme, #4f46e5);
+}
 
 @media print {
     nav,

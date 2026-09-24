@@ -11,7 +11,7 @@
         .identity { display: table; width: 100%; }
         .identity-main, .identity-photo { display: table-cell; vertical-align: top; }
         .identity-photo { width: 110px; text-align: right; }
-        .identity-photo img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
+        .identity-photo img { width: 100px; height: 100px; border: 2px solid {{ $cv['color'] }}; border-radius: 50%; object-fit: cover; }
         h1 { margin: 0; color: #0f172a; font-size: 24px; line-height: 1.2; }
         .title { display: inline-block; margin-top: 6px; padding: 5px 9px; border-radius: 5px; background: {{ $cv['color'] }}; color: #fff; font-size: 11px; font-weight: bold; }
         .contact { margin-top: 10px; color: #64748b; }
