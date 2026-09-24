@@ -44,6 +44,10 @@ article [class*="text-[10px]"] {
     border: 2px solid var(--cv-theme, #4f46e5);
 }
 
+.cv-preview article {
+    border: 5px solid var(--cv-theme, #4f46e5);
+}
+
 @media print {
     nav,
     .cv-builder-header,

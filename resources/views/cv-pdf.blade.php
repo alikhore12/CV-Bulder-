@@ -6,7 +6,7 @@
     <style>
         @page { size: A4; margin: 18mm; }
         * { box-sizing: border-box; }
-        body { margin: 0; color: #334155; font-family: DejaVu Sans, Arial, sans-serif; font-size: 10px; line-height: 1.5; }
+        body { margin: 0; border: 5px solid {{ $cv['color'] }}; padding: 12px; color: #334155; font-family: DejaVu Sans, Arial, sans-serif; font-size: 10px; line-height: 1.5; }
         .top { border-bottom: 3px solid {{ $cv['color'] }}; padding-bottom: 13px; }
         .identity { display: table; width: 100%; }
         .identity-main, .identity-photo { display: table-cell; vertical-align: top; }
