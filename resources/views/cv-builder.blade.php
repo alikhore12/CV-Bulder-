@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div x-data="cvBuilder()" x-init="loadDraft()" class="min-h-screen bg-[#f5f7fa] text-slate-900">
+    <div x-data="cvBuilder(@js($templates))" x-init="loadDraft()" class="min-h-screen bg-[#f5f7fa] text-slate-900">
         <header class="border-b border-slate-200 bg-white">
             <div class="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
                 <a href="{{ url('/') }}" class="flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-xl bg-[#0d6efd] text-lg font-black text-white">CV</span><span><span class="block text-base font-extrabold tracking-tight text-[#0a2c4f]">CV Builder</span><span class="hidden text-xs text-slate-500 sm:block">Professional resumes, made simple</span></span></a>
@@ -22,34 +22,102 @@
                     </div></section></template>
                     <div class="rounded-2xl bg-[#0a2c4f] p-5 text-white"><div class="flex items-center justify-between gap-4"><div><p class="font-bold">Your CV is always up to date</p><p class="mt-1 text-xs text-blue-100">Save your draft in this browser or download a polished PDF.</p></div><button type="submit" class="rounded-lg bg-white px-4 py-2 text-sm font-bold text-[#0a2c4f] hover:bg-blue-50">Save CV</button></div></div>
                 </form>
-                <aside class="lg:sticky lg:top-5"><div class="mb-3 flex items-center justify-between"><div><p class="text-sm font-bold text-[#0a2c4f]">Live preview</p><p class="text-xs text-slate-500">Blue Professional template · A4</p></div><span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0d6efd]">Auto-updating</span></div>
-                    <article id="cv-preview" class="cv-paper relative overflow-hidden bg-white shadow-xl ring-1 ring-slate-200"><div class="cv-watermark" aria-hidden="true"><span x-text="((cv.name || 'Your Name').trim()) + ' CV'"></span></div><header class="cv-header relative z-10 overflow-hidden bg-[#0a2c4f] px-7 py-8 text-white sm:px-10"><div class="cv-shape cv-shape-one"></div><div class="cv-shape cv-shape-two"></div><div class="relative z-10 flex items-center gap-5"><div class="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-full border-4 border-white/80 bg-white/10 text-3xl font-bold text-white"><template x-if="cv.photo"><img :src="cv.photo" alt="Profile photo" class="h-full w-full object-cover"></template><span x-show="!cv.photo" x-text="initials()"></span></div><div class="min-w-0"><p class="mb-2 text-xs font-bold uppercase tracking-[.2em] text-blue-200" x-text="cv.headline || 'Professional title'"></p><h2 class="break-words text-3xl font-black leading-tight sm:text-4xl" x-text="cv.name || 'Your Name'"></h2><div class="mt-3 h-1 w-14 rounded-full bg-[#0d6efd]"></div></div></div></header><div class="cv-body relative z-10 grid grid-cols-1 gap-0 px-7 py-7 sm:grid-cols-[.78fr_1.22fr] sm:px-10"><div class="cv-sidebar space-y-6 border-b border-slate-200 pb-6 sm:border-b-0 sm:border-r sm:pr-7"><section><h3 class="cv-heading">Profile</h3><p class="cv-copy" x-text="cv.summary || 'Your professional summary will appear here. Tell employers what makes you valuable and what you are looking for next.'"></p></section><section><h3 class="cv-heading">Contact</h3><div class="space-y-2.5 text-[11px] text-slate-600"><p x-show="cv.phone" class="flex gap-2"><span class="text-[#0d6efd]">☎</span><span x-text="cv.phone"></span></p><p x-show="cv.email" class="flex gap-2 break-all"><span class="text-[#0d6efd]">✉</span><span x-text="cv.email"></span></p><p x-show="cv.location" class="flex gap-2"><span class="text-[#0d6efd]">⌖</span><span x-text="cv.location"></span></p><p x-show="cv.website" class="flex gap-2 break-all"><span class="text-[#0d6efd]">↗</span><span x-text="cv.website"></span></p><p x-show="cv.linkedin" class="flex gap-2 break-all"><span class="text-[#0d6efd]">in</span><span x-text="cv.linkedin"></span></p><p x-show="!cv.phone && !cv.email && !cv.location && !cv.website && !cv.linkedin" class="text-slate-400">Add your contact details.</p></div></section><section><h3 class="cv-heading">Skills</h3><div class="grid grid-cols-1 gap-2 text-[11px] text-slate-600 sm:grid-cols-2"><template x-for="skill in skillList()" :key="skill"><span class="flex gap-2"><b class="text-[#0d6efd]">✓</b><span x-text="skill"></span></span></template></div></section><section x-show="cv.languages.some(item => item.name)"><h3 class="cv-heading">Languages</h3><div class="space-y-2 text-[11px] text-slate-600"><template x-for="item in cv.languages" :key="item.id"><p x-show="item.name"><span class="font-bold text-slate-700" x-text="item.name"></span><span class="block text-slate-400" x-text="item.level"></span></p></template></div></section></div><div class="space-y-6 pt-6 sm:pl-7 sm:pt-0"><section><h3 class="cv-heading">Education</h3><div class="space-y-4"><template x-for="item in cv.education" :key="item.id"><div x-show="item.degree || item.institution"><p class="cv-title" x-text="[item.degree, item.field].filter(Boolean).join(' / ') || 'Degree name'"></p><p class="cv-meta" x-text="[item.institution, [item.startYear, item.endYear].filter(Boolean).join(' – ')].filter(Boolean).join(' · ')"></p><p x-show="item.description" class="cv-copy mt-1" x-text="item.description"></p></div></template><p x-show="!cv.education.some(item => item.degree || item.institution)" class="cv-copy text-slate-400">Your education history will appear here.</p></div></section><section><h3 class="cv-heading">Experience</h3><div class="space-y-4"><template x-for="item in cv.experience" :key="item.id"><div x-show="item.position || item.company"><p class="cv-title" x-text="item.position || 'Job position'"></p><p class="cv-meta" x-text="[item.company, item.startDate, item.current ? 'Present' : item.endDate].filter(Boolean).join(' · ')"></p><p x-show="item.description" class="cv-copy mt-1 whitespace-pre-line" x-text="item.description"></p></div></template><p x-show="!cv.experience.some(item => item.position || item.company)" class="cv-copy text-slate-400">Your work experience will appear here.</p></div></section><section x-show="cv.certifications.some(item => item.name)"><h3 class="cv-heading">Certifications</h3><div class="space-y-3"><template x-for="item in cv.certifications" :key="item.id"><div x-show="item.name"><p class="cv-title" x-text="item.name"></p><p class="cv-meta" x-text="[item.organization, item.date].filter(Boolean).join(' · ')"></p></div></template></div></section></div></div><footer class="cv-footer relative z-10"></footer></article>
-                    <template x-teleport="#cv-preview .cv-sidebar section:nth-child(2)"><section class="mt-5 border-t border-slate-200 pt-5">
-                        <h3 class="cv-heading">Personal details — live preview</h3>
-                        <div aria-live="polite" class="space-y-2 text-xs text-slate-600"><p x-show="cv.fullAddress"><strong>Address:</strong> <span x-text="cv.fullAddress"></span></p><p x-show="cv.fatherName"><strong>Father name:</strong> <span x-text="cv.fatherName"></span></p><p x-show="cv.domicile"><strong>Domicile:</strong> <span x-text="cv.domicile"></span></p><p x-show="cv.dateOfBirth"><strong>Date of birth:</strong> <span x-text="cv.dateOfBirth"></span></p><p x-show="cv.cnicNumber"><strong>CNIC / ID:</strong> <span x-text="cv.cnicNumber"></span></p><p x-show="!cv.fullAddress && !cv.fatherName && !cv.domicile && !cv.dateOfBirth && !cv.cnicNumber" class="text-slate-400">Personal details will appear here.</p></div>
-                    </section></template>
-                    <template x-teleport="#cv-preview .cv-body > div:nth-child(2) section:nth-child(2)"><section class="mt-5 border-t border-slate-200 pt-5"><h3 class="cv-heading">Skills</h3><div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600"><template x-for="skill in skillList()" :key="'experience-skill-' + skill"><span><b class="text-[#0d6efd]">✓</b> <span x-text="skill"></span></span></template><span x-show="!skillList().length" class="col-span-2 text-slate-400">Skills will appear here.</span></div></section></template>
-                    <div class="mt-4 rounded-xl bg-white p-5 shadow ring-1 ring-slate-200">
-                        <h3 class="cv-heading">Education results — live preview</h3>
-                        <div aria-live="polite" class="space-y-2 text-xs text-slate-600">
-                            <template x-for="(item, index) in cv.education" :key="'preview-results-' + item.id">
-                                <p x-show="item.totalMarks || item.obtainedMarks || item.percentage"><strong x-text="'Education ' + (index + 1) + ':'"></strong> <span x-text="[['Obtained', item.obtainedMarks], ['Total', item.totalMarks], ['Percentage', item.percentage]].filter(pair => pair[1]).map(pair => pair.join(': ')).join(' · ')"></span></p>
-                            </template>
-                            <p x-show="!cv.education.some(item => item.totalMarks || item.obtainedMarks || item.percentage)" class="text-slate-400">Marks and percentage will appear here.</p>
+                <aside class="lg:sticky lg:top-5">
+                    <div class="mb-3 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-bold text-[#0a2c4f]">Live preview</p>
+                            <p class="text-xs text-slate-500"><span x-text="activeTemplateName()"></span> &middot; A4</p>
                         </div>
+                        <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#0d6efd]">Auto-updating</span>
+                    </div>
+
+                    <div class="mb-3 flex flex-wrap gap-1.5" role="radiogroup" aria-label="CV template">
+                        <template x-for="item in templates" :key="item.slug">
+                            <button type="button" role="radio" @click="setTemplate(item.slug)" :aria-checked="template === item.slug" :title="item.description"
+                                class="rounded-lg border px-2.5 py-1.5 text-xs font-bold transition"
+                                :class="template === item.slug ? 'border-[#0d6efd] bg-[#0d6efd] text-white' : 'border-slate-300 bg-white text-slate-600 hover:border-[#0d6efd] hover:text-[#0d6efd]'"
+                                x-text="item.name"></button>
+                        </template>
+                    </div>
+
+                    <div :data-cv-template="template">
+                        @foreach ($templates as $templateOption)
+                            <template x-if="template === @js($templateOption['slug'])">@include('cv-preview.'.$templateOption['slug'])</template>
+                        @endforeach
                     </div>
                 </aside>
             </div>
         </main>
     </div>
-    <style>.cv-sidebar > section:nth-child(3) { display: none; }</style>
-    <style>
-        .field-label { display:block; font-size:.75rem; font-weight:700; color:#334155; } .field { margin-top:.45rem; display:block; width:100%; border-radius:.6rem; border:1px solid #cbd5e1; background:#fff; padding:.65rem .75rem; font-size:.875rem; color:#0f172a; outline:none; transition:.2s; } .field:focus { border-color:#0d6efd; box-shadow:0 0 0 3px #0d6efd1a; } .add-button { border-radius:.6rem; background:#eff6ff; padding:.65rem .8rem; font-size:.75rem; font-weight:800; color:#0d6efd; } .add-button:hover { background:#dbeafe; } .cv-paper { min-height:700px; } .cv-shape { position:absolute; background:#0d6efd; opacity:.9; transform:skewX(-28deg); } .cv-shape-one { right:-8%; top:-50%; height:220%; width:32%; } .cv-shape-two { right:13%; bottom:-72%; height:180%; width:11%; background:#65a7ff; opacity:.55; } .cv-watermark { position:absolute; inset:0; z-index:0; display:flex; align-items:center; justify-content:center; overflow:hidden; pointer-events:none; } .cv-watermark span { transform:rotate(-30deg); white-space:nowrap; color:#e2e8f0; font-size:3.25rem; font-weight:900; letter-spacing:.02em; } .cv-heading { margin-bottom:.8rem; border-bottom:2px solid #0d6efd; padding-bottom:.4rem; color:#0d6efd; font-size:.68rem; font-weight:900; letter-spacing:.16em; text-transform:uppercase; } .cv-copy { font-size:.68rem; line-height:1.65; color:#64748b; } .cv-title { font-size:.74rem; font-weight:800; line-height:1.35; color:#0a2c4f; } .cv-meta { margin-top:.2rem; font-size:.64rem; font-weight:700; color:#0d6efd; } .cv-footer { height:16px; background:#0a2c4f; clip-path:polygon(0 60%,72% 60%,78% 0,100% 0,100% 100%,0 100%); } @media (min-width:1024px) { .cv-paper { min-height:760px; } } @media print { nav, header:not(.cv-header), form, main > div > div:first-child, aside > div:first-child { display:none !important; } body, .min-h-screen { background:#fff !important; } main, aside { display:block !important; padding:0 !important; } .cv-paper { width:210mm !important; min-height:297mm !important; margin:0 auto !important; box-shadow:none !important; } }
-    </style>
+    @include('cv-preview.styles')
     <script>
-        function cvBuilder() {
-            const blankEducation = () => ({ id: Date.now() + Math.random(), degree:'', field:'', institution:'', startYear:'', endYear:'', totalMarks:'', obtainedMarks:'', percentage:'', description:'' }); const blankExperience = () => ({ id:Date.now()+Math.random(), position:'', company:'', startDate:'', endDate:'', current:false, description:'' }); const blankLanguage = () => ({ id:Date.now()+Math.random(), name:'', level:'' }); const blankCertification = () => ({ id:Date.now()+Math.random(), name:'', organization:'', date:'' });
-            return { saved:false, downloading:false, sections:[{id:'personal',number:'01',title:'Personal information',subtitle:'Your name and contact details',open:true},{id:'summary',number:'02',title:'Profile / summary',subtitle:'Make a strong first impression',open:true},{id:'education',number:'03',title:'Education',subtitle:'Your academic background',open:false},{id:'experience',number:'04',title:'Work experience',subtitle:'Showcase your career impact',open:false},{id:'skills',number:'05',title:'Skills',subtitle:'Your strongest capabilities',open:false},{id:'languages',number:'06',title:'Languages',subtitle:'Language proficiency',open:false},{id:'certifications',number:'07',title:'Certifications',subtitle:'Courses and credentials',open:false}], cv:{name:'',headline:'',location:'',email:'',phone:'',website:'',linkedin:'',photo:'',summary:'',skills:'',education:[blankEducation()],experience:[blankExperience()],languages:[blankLanguage()],certifications:[blankCertification()]}, loadDraft(){const draft=localStorage.getItem('cvbuilder-draft');if(draft)this.cv={...this.cv,...JSON.parse(draft)};['education','experience','languages','certifications'].forEach(key=>{if(!Array.isArray(this.cv[key])||!this.cv[key].length)this.cv[key]=[key==='education'?blankEducation():key==='experience'?blankExperience():key==='languages'?blankLanguage():blankCertification()]})}, saveDraft(){localStorage.setItem('cvbuilder-draft',JSON.stringify(this.cv));this.saved=true}, resetCv(){if(confirm('Clear all CV information?')){localStorage.removeItem('cvbuilder-draft');window.location.reload()}}, initials(){return(this.cv.name||'YN').split(' ').map(word=>word[0]).join('').slice(0,2).toUpperCase()}, skillList(){return(this.cv.skills||'').split(',').map(item=>item.trim()).filter(Boolean)}, addEducation(){this.cv.education.push(blankEducation())}, addExperience(){this.cv.experience.push(blankExperience())}, addLanguage(){this.cv.languages.push(blankLanguage())}, addCertification(){this.cv.certifications.push(blankCertification())}, removeItem(collection,index){if(this.cv[collection].length>1)this.cv[collection].splice(index,1)}, uploadPhoto(event){const file=event.target.files[0];if(!file)return;if(file.size>2*1024*1024){alert('Please choose an image smaller than 2 MB.');event.target.value='';return}const reader=new FileReader();reader.onload=e=>{this.cv.photo=e.target.result;this.saved=false};reader.readAsDataURL(file)}, downloadPdf(){this.downloading=true;fetch('{{ route('cv-builder.pdf') }}',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/pdf','X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').content},body:JSON.stringify(this.cv)}).then(response=>{if(!response.ok)throw new Error();return response.blob()}).then(blob=>{const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='professional-cv.pdf';link.click();URL.revokeObjectURL(url)}).catch(()=>alert('The PDF could not be created. Please try again.')).finally(()=>{this.downloading=false})} };
+        function cvBuilder(templates) {
+            const blankEducation = () => ({ id: Date.now() + Math.random(), degree:'', field:'', institution:'', startYear:'', endYear:'', totalMarks:'', obtainedMarks:'', percentage:'', description:'' });
+            const blankExperience = () => ({ id: Date.now() + Math.random(), position:'', company:'', startDate:'', endDate:'', current:false, description:'' });
+            const blankLanguage = () => ({ id: Date.now() + Math.random(), name:'', level:'' });
+            const blankCertification = () => ({ id: Date.now() + Math.random(), name:'', organization:'', date:'' });
+            const contactFields = [['Phone', 'phone'], ['Email', 'email'], ['Location', 'location'], ['Website', 'website'], ['LinkedIn', 'linkedin']];
+
+            return {
+                saved: false,
+                downloading: false,
+                templates: templates,
+                template: templates.length ? templates[0].slug : 'classic',
+                sections: [
+                    { id: 'personal', number: '01', title: 'Personal information', subtitle: 'Your name and contact details', open: true },
+                    { id: 'summary', number: '02', title: 'Profile / summary', subtitle: 'Make a strong first impression', open: true },
+                    { id: 'education', number: '03', title: 'Education', subtitle: 'Your academic background', open: false },
+                    { id: 'experience', number: '04', title: 'Work experience', subtitle: 'Showcase your career impact', open: false },
+                    { id: 'skills', number: '05', title: 'Skills', subtitle: 'Your strongest capabilities', open: false },
+                    { id: 'languages', number: '06', title: 'Languages', subtitle: 'Language proficiency', open: false },
+                    { id: 'certifications', number: '07', title: 'Certifications', subtitle: 'Courses and credentials', open: false },
+                ],
+                cv: {
+                    name: '', headline: '', location: '', email: '', phone: '', website: '', linkedin: '', photo: '', summary: '', skills: '',
+                    education: [blankEducation()], experience: [blankExperience()], languages: [blankLanguage()], certifications: [blankCertification()],
+                },
+                setTemplate(slug) { this.template = slug; this.saved = false; },
+                activeTemplateName() { const match = this.templates.find(item => item.slug === this.template); return match ? match.name : ''; },
+                contactList() { return contactFields.filter(([, key]) => this.cv[key]).map(([label, key]) => ({ label: label, value: this.cv[key] })); },
+                loadDraft() {
+                    const draft = localStorage.getItem('cvbuilder-draft');
+                    if (draft) this.cv = { ...this.cv, ...JSON.parse(draft) };
+                    ['education', 'experience', 'languages', 'certifications'].forEach(key => {
+                        if (!Array.isArray(this.cv[key]) || !this.cv[key].length) this.cv[key] = [key === 'education' ? blankEducation() : key === 'experience' ? blankExperience() : key === 'languages' ? blankLanguage() : blankCertification()];
+                    });
+                    const savedTemplate = localStorage.getItem('cvbuilder-template');
+                    if (savedTemplate && this.templates.some(item => item.slug === savedTemplate)) this.template = savedTemplate;
+                },
+                saveDraft() { localStorage.setItem('cvbuilder-draft', JSON.stringify(this.cv)); localStorage.setItem('cvbuilder-template', this.template); this.saved = true; },
+                resetCv() { if (confirm('Clear all CV information?')) { localStorage.removeItem('cvbuilder-draft'); localStorage.removeItem('cvbuilder-template'); window.location.reload(); } },
+                initials() { return (this.cv.name || 'YN').split(' ').map(word => word[0]).join('').slice(0, 2).toUpperCase(); },
+                skillList() { return (this.cv.skills || '').split(',').map(item => item.trim()).filter(Boolean); },
+                addEducation() { this.cv.education.push(blankEducation()); },
+                addExperience() { this.cv.experience.push(blankExperience()); },
+                addLanguage() { this.cv.languages.push(blankLanguage()); },
+                addCertification() { this.cv.certifications.push(blankCertification()); },
+                removeItem(collection, index) { if (this.cv[collection].length > 1) this.cv[collection].splice(index, 1); },
+                uploadPhoto(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+                    if (file.size > 2 * 1024 * 1024) { alert('Please choose an image smaller than 2 MB.'); event.target.value = ''; return; }
+                    const reader = new FileReader();
+                    reader.onload = e => { this.cv.photo = e.target.result; this.saved = false; };
+                    reader.readAsDataURL(file);
+                },
+                downloadPdf() {
+                    this.downloading = true;
+                    fetch(@js(route('cv-builder.pdf')), {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/pdf', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content },
+                        body: JSON.stringify({ ...this.cv, template: this.template }),
+                    })
+                        .then(response => { if (!response.ok) throw new Error(); return response.blob(); })
+                        .then(blob => { const url = URL.createObjectURL(blob); const link = document.createElement('a'); link.href = url; link.download = 'professional-cv.pdf'; link.click(); URL.revokeObjectURL(url); })
+                        .catch(() => alert('The PDF could not be created. Please try again.'))
+                        .finally(() => { this.downloading = false; });
+                },
+            };
         }
     </script>
 </x-app-layout>
