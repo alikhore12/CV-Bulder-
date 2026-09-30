@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CvTemplate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class CvPdfController extends Controller
 {
@@ -19,6 +21,7 @@ class CvPdfController extends Controller
     public function download(Request $request): Response
     {
         $cv = $request->validate([
+            'template' => ['nullable', 'string', Rule::in(CvTemplate::SLUGS)],
             'name' => ['nullable', 'string', 'max:150'],
             'headline' => ['nullable', 'string', 'max:150'],
             'location' => ['nullable', 'string', 'max:150'],
@@ -69,10 +72,17 @@ class CvPdfController extends Controller
 
         $cv['color'] = $cv['color'] ?? '#4f46e5';
         $cv['education'] = $cv['education'] ?? [];
+        $cv['experience'] = $cv['experience'] ?? [];
+        $cv['languages'] = $cv['languages'] ?? [];
+        $cv['certifications'] = $cv['certifications'] ?? [];
+
+        $templateSlug = in_array($cv['template'] ?? null, CvTemplate::SLUGS, true)
+            ? $cv['template']
+            : CvTemplate::DEFAULT_SLUG;
 
         $watermarkText = trim(($cv['name'] ?? '').' CV');
 
-        return Pdf::loadView('cv-pdf', [
+        return Pdf::loadView(CvTemplate::viewFor($templateSlug), [
             'cv' => $cv,
             'watermarkText' => $watermarkText,
             'watermarkSize' => $this->watermarkFontSize($watermarkText),

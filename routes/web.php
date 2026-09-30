@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CvPdfController;
+use App\Http\Controllers\ProfileController;
+use App\Models\CvTemplate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,7 +10,10 @@ Route::get('/', function () {
 });
 
 Route::get('/cv-builder', function () {
-    return view('cv-builder');
+    return view('cv-builder', [
+        'templates' => CvTemplate::activeOptions(),
+        'defaultTemplate' => CvTemplate::DEFAULT_SLUG,
+    ]);
 })->name('cv-builder');
 
 Route::post('/cv-builder/pdf', [CvPdfController::class, 'download'])
