@@ -33,7 +33,8 @@
         .watermark { position: fixed; top: 0; left: 0; width: 794px; height: 1123px; z-index: -1; }
         .watermark span { display: block; width: 794px; height: 1123px; padding-top: 619px; color: #dde5ef; font-size: {{ $watermarkSize ?? 77 }}px; font-weight: bold; line-height: 1.039; text-align: center; white-space: nowrap; transform: rotate(-30deg); }
     </style>
-</style><style>.left section:nth-child(3) { display: none; }</style></head>
+    <style>.left section:nth-child(3) { display: none; }</style>
+</head>
 <body>
     <div class="watermark"><span>{{ $watermarkText ?? trim(($cv['name'] ?? '').' CV') }}</span></div>
     <header class="header"><div class="shape"></div><div class="shape shape-two"></div><div class="identity">
