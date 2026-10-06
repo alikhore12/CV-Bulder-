@@ -18,9 +18,9 @@ class CvTemplate extends Model
      * The list doubles as a whitelist: a request may only ever render one of
      * these known views, never an arbitrary user-supplied view name.
      */
-    public const SLUGS = ['classic', 'modern', 'minimal', 'elegant', 'compact'];
+    public const SLUGS = ['blue-cyan-wave', 'black-yellow-sidebar', 'minimal-dark-sidebar', 'navy-blue-geometric'];
 
-    public const DEFAULT_SLUG = 'classic';
+    public const DEFAULT_SLUG = 'black-yellow-sidebar';
 
     protected $table = 'cv_templates';
 
@@ -64,24 +64,20 @@ class CvTemplate extends Model
     {
         $catalog = [
             [
-                'name' => 'Blue Professional',
-                'description' => 'Navy header with angled accent shapes and a two-column layout.',
+                'name' => 'Blue Cyan Wave Resume',
+                'description' => 'Colorful A4 CV with deep navy and bright cyan wave decorative elements.',
             ],
             [
-                'name' => 'Modern Teal',
-                'description' => 'Accent bar header with bordered section cards, roomy and readable.',
+                'name' => 'Black/Yellow Modern Sidebar',
+                'description' => 'Professional vertical resume with dark sidebar and yellow accent highlights.',
             ],
             [
-                'name' => 'Minimal Serif',
-                'description' => 'Centred serif header, thin rules and generous white space.',
+                'name' => 'Minimal Dark Sidebar Professional',
+                'description' => 'Premium corporate CV with dark sidebar and clean white content area.',
             ],
             [
-                'name' => 'Elegant Gold',
-                'description' => 'Framed sheet with gold accents and classic serif typography.',
-            ],
-            [
-                'name' => 'Compact Cyan',
-                'description' => 'Dense two-column layout that fits more content on one page.',
+                'name' => 'Navy Blue Creative Geometric',
+                'description' => 'Highly visual creative CV with deep navy background and geometric design elements.',
             ],
         ];
 
@@ -116,6 +112,12 @@ class CvTemplate extends Model
             return self::catalog();
         }
 
-        return $options === [] ? self::catalog() : $options;
+        $catalog = self::catalog();
+        $storedBySlug = collect($options)->keyBy('slug');
+
+        return collect($catalog)
+            ->map(fn (array $template): array => $storedBySlug->get($template['slug'], $template))
+            ->values()
+            ->all();
     }
 }

@@ -29,6 +29,7 @@ class CvPdfController extends Controller
             'phone' => ['nullable', 'string', 'max:50'],
             'website' => ['nullable', 'string', 'max:255'],
             'linkedin' => ['nullable', 'string', 'max:255'],
+            'github' => ['nullable', 'string', 'max:255'],
             'photo' => ['nullable', 'string', 'max:5000000'],
             'color' => ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/'],
             'fatherName' => ['nullable', 'string', 'max:150'],
@@ -41,13 +42,13 @@ class CvPdfController extends Controller
             'company' => ['nullable', 'string', 'max:150'],
             'startDate' => ['nullable', 'string', 'max:50'],
             'endDate' => ['nullable', 'string', 'max:50'],
-            'experience' => ['nullable', 'string', 'max:3000'],
             'summary' => ['nullable', 'string', 'max:3000'],
-            'skills' => ['nullable', 'string', 'max:1000'],
+            'skills' => ['nullable'],
             'education' => ['nullable', 'array', 'max:20'],
             'education.*.degree' => ['nullable', 'string', 'max:150'],
             'education.*.field' => ['nullable', 'string', 'max:150'],
             'education.*.institution' => ['nullable', 'string', 'max:200'],
+            'education.*.location' => ['nullable', 'string', 'max:150'],
             'education.*.startYear' => ['nullable', 'string', 'max:20'],
             'education.*.endYear' => ['nullable', 'string', 'max:20'],
             'education.*.description' => ['nullable', 'string', 'max:1000'],
@@ -57,24 +58,77 @@ class CvPdfController extends Controller
             'experience' => ['nullable', 'array', 'max:20'],
             'experience.*.position' => ['nullable', 'string', 'max:150'],
             'experience.*.company' => ['nullable', 'string', 'max:200'],
+            'experience.*.location' => ['nullable', 'string', 'max:150'],
             'experience.*.startDate' => ['nullable', 'string', 'max:50'],
             'experience.*.endDate' => ['nullable', 'string', 'max:50'],
             'experience.*.current' => ['nullable', 'boolean'],
             'experience.*.description' => ['nullable', 'string', 'max:3000'],
             'languages' => ['nullable', 'array', 'max:20'],
             'languages.*.name' => ['nullable', 'string', 'max:100'],
+            'languages.*.proficiency' => ['nullable', 'string', 'max:100'],
             'languages.*.level' => ['nullable', 'string', 'max:100'],
             'certifications' => ['nullable', 'array', 'max:20'],
             'certifications.*.name' => ['nullable', 'string', 'max:150'],
             'certifications.*.organization' => ['nullable', 'string', 'max:150'],
             'certifications.*.date' => ['nullable', 'string', 'max:50'],
+            'certifications.*.issueDate' => ['nullable', 'date_format:Y-m'],
+            'certifications.*.expiryDate' => ['nullable', 'date_format:Y-m'],
+            'certifications.*.credentialId' => ['nullable', 'string', 'max:100'],
+            'certifications.*.credentialUrl' => ['nullable', 'url', 'max:500'],
+            'projects' => ['nullable', 'array', 'max:20'],
+            'projects.*.name' => ['nullable', 'string', 'max:200'],
+            'projects.*.role' => ['nullable', 'string', 'max:150'],
+            'projects.*.technologies' => ['nullable', 'string', 'max:500'],
+            'projects.*.url' => ['nullable', 'url', 'max:500'],
+            'projects.*.githubUrl' => ['nullable', 'url', 'max:500'],
+            'projects.*.description' => ['nullable', 'string', 'max:3000'],
+            'references' => ['nullable', 'array', 'max:10'],
+            'references.*.name' => ['nullable', 'string', 'max:150'],
+            'references.*.position' => ['nullable', 'string', 'max:150'],
+            'references.*.company' => ['nullable', 'string', 'max:200'],
+            'references.*.email' => ['nullable', 'email', 'max:255'],
+            'references.*.phone' => ['nullable', 'string', 'max:50'],
+            'references.*.relationship' => ['nullable', 'string', 'max:500'],
         ]);
 
-        $cv['color'] = $cv['color'] ?? '#4f46e5';
+        $cv['color'] = $cv['color'] ?? '#f4c400';
         $cv['education'] = $cv['education'] ?? [];
         $cv['experience'] = $cv['experience'] ?? [];
         $cv['languages'] = $cv['languages'] ?? [];
         $cv['certifications'] = $cv['certifications'] ?? [];
+        $cv['projects'] = $cv['projects'] ?? [];
+        $cv['references'] = $cv['references'] ?? [];
+
+        $skillItems = is_array($cv['skills'] ?? null)
+            ? collect($cv['skills'])
+                ->filter(fn (mixed $skill): bool => is_array($skill) && filled($skill['name'] ?? null))
+                ->map(fn (array $skill): array => [
+                    'name' => (string) $skill['name'],
+                    'level' => (string) ($skill['level'] ?? ''),
+                ])
+                ->values()
+                ->all()
+            : collect(explode(',', (string) ($cv['skills'] ?? '')))
+                ->map(fn (string $skill): array => ['name' => trim($skill), 'level' => ''])
+                ->filter(fn (array $skill): bool => $skill['name'] !== '')
+                ->values()
+                ->all();
+
+        $cv['skillItems'] = $skillItems;
+
+        if (is_array($cv['skills'] ?? null)) {
+            $cv['skills'] = collect($skillItems)->pluck('name')->implode(', ');
+        }
+
+        foreach ($cv['languages'] as &$language) {
+            $language['level'] = $language['proficiency'] ?? $language['level'] ?? '';
+        }
+        unset($language);
+
+        foreach ($cv['certifications'] as &$certification) {
+            $certification['date'] = $certification['issueDate'] ?? $certification['date'] ?? '';
+        }
+        unset($certification);
 
         $templateSlug = in_array($cv['template'] ?? null, CvTemplate::SLUGS, true)
             ? $cv['template']

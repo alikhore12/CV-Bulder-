@@ -32,7 +32,8 @@
                     <p x-show="cv.location" class="flex gap-2"><span class="tp-accent">&#9673;</span><span x-text="cv.location"></span></p>
                     <p x-show="cv.website" class="flex gap-2 break-all"><span class="tp-accent">&#9678;</span><span x-text="cv.website"></span></p>
                     <p x-show="cv.linkedin" class="flex gap-2 break-all"><span class="tp-accent">in</span><span x-text="cv.linkedin"></span></p>
-                    <p x-show="!cv.phone && !cv.email && !cv.location && !cv.website && !cv.linkedin" class="text-slate-400">Add your contact details.</p>
+                    <p x-show="cv.github" class="flex gap-2 break-all"><span class="tp-accent">GH</span><span x-text="cv.github"></span></p>
+                    <p x-show="!cv.phone && !cv.email && !cv.location && !cv.website && !cv.linkedin && !cv.github" class="text-slate-400">Add your contact details.</p>
                 </div>
             </section>
 
@@ -59,7 +60,7 @@
             <section x-show="cv.languages.some(item => item.name)">
                 <h3 class="tp-heading">Languages</h3>
                 <div class="space-y-2 text-[11px] text-slate-600">
-                    <template x-for="item in cv.languages" :key="item.id"><p x-show="item.name"><span class="font-bold text-slate-700" x-text="item.name"></span><span class="block text-slate-400" x-text="item.level"></span></p></template>
+                    <template x-for="item in cv.languages" :key="item.id"><p x-show="item.name"><span class="font-bold text-slate-700" x-text="item.name"></span><span class="block text-slate-400" x-text="item.proficiency || item.level"></span></p></template>
                 </div>
             </section>
         </div>
@@ -96,12 +97,19 @@
                 </div>
             </section>
 
+            <section x-show="cv.projects.some(item => item.name)">
+                <h3 class="tp-heading">Projects</h3>
+                <div class="space-y-4"><template x-for="item in cv.projects" :key="item.id"><div x-show="item.name"><p class="tp-title" x-text="item.name"></p><p class="tp-meta" x-text="[item.role, item.technologies].filter(Boolean).join(' · ')"></p><p x-show="item.description" class="tp-copy mt-1 whitespace-pre-line" x-text="item.description"></p></div></template></div>
+            </section>
+
             <section x-show="cv.certifications.some(item => item.name)">
                 <h3 class="tp-heading">Certifications</h3>
                 <div class="space-y-3">
-                    <template x-for="item in cv.certifications" :key="item.id"><div x-show="item.name"><p class="tp-title" x-text="item.name"></p><p class="tp-meta" x-text="[item.organization, item.date].filter(Boolean).join(' · ')"></p></div></template>
+                    <template x-for="item in cv.certifications" :key="item.id"><div x-show="item.name"><p class="tp-title" x-text="item.name"></p><p class="tp-meta" x-text="[item.organization, item.issueDate || item.date, item.noExpiry ? 'No expiry' : item.expiryDate].filter(Boolean).join(' · ')"></p></div></template>
                 </div>
             </section>
+
+            <section x-show="cv.settings.referenceMode === 'full' && cv.references.some(item => item.name)"><h3 class="tp-heading">References</h3><div class="space-y-3"><template x-for="item in cv.references" :key="item.id"><div x-show="item.name"><p class="tp-title" x-text="item.name"></p><p class="tp-meta" x-text="[item.position, item.company].filter(Boolean).join(' · ')"></p><p class="tp-copy" x-text="[item.email, item.phone].filter(Boolean).join(' · ')"></p></div></template></div></section>
         </div>
     </div>
 

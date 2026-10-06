@@ -43,9 +43,10 @@
         @if (!empty($cv['photo']) && str_starts_with($cv['photo'], 'data:image/'))<div class="photo"><img src="{{ $cv['photo'] }}" alt="Profile photo"></div>@endif
         <div class="head-main"><div class="title">{{ $cv['headline'] ?? 'Professional title' }}</div><h1 class="name">{{ $cv['name'] ?? 'Your Name' }}</h1></div>
     </div>
-    <div class="contact-line">@foreach ([['Phone', 'phone'], ['Email', 'email'], ['Location', 'location'], ['Website', 'website'], ['LinkedIn', 'linkedin']] as [$label, $key]) @if (!empty($cv[$key]))<span><b>{{ $label }}:</b> {{ $cv[$key] }}</span>@endif @endforeach @if (empty($cv['phone']) && empty($cv['email']) && empty($cv['location']) && empty($cv['website']) && empty($cv['linkedin']))<span>Add your contact details</span>@endif</div>
+    <div class="contact-line">@foreach ([['Phone', 'phone'], ['Email', 'email'], ['Location', 'location'], ['Website', 'website'], ['LinkedIn', 'linkedin'], ['GitHub', 'github']] as [$label, $key]) @if (!empty($cv[$key]))<span><b>{{ $label }}:</b> {{ $cv[$key] }}</span>@endif @endforeach @if (empty($cv['phone']) && empty($cv['email']) && empty($cv['location']) && empty($cv['website']) && empty($cv['linkedin']) && empty($cv['github']))<span>Add your contact details</span>@endif</div>
     </header>
     <div class="body">
+        @if (!empty($cv['projects']))<section class="card"><h2 class="heading">Projects</h2>@foreach ($cv['projects'] as $project) @if (!empty($project['name']))<div class="item"><div class="item-title">{{ $project['name'] }}</div><div class="meta">{{ $project['role'] ?? '' }}{{ !empty($project['technologies']) ? ' / '.$project['technologies'] : '' }}</div>@if (!empty($project['description']))<div class="copy">{{ $project['description'] }}</div>@endif</div>@endif @endforeach</section>@endif
         <section class="card"><h2 class="heading">Profile</h2><p class="summary">{{ $cv['summary'] ?? 'Your professional summary will appear here.' }}</p></section>
         <section class="card"><h2 class="heading">Education</h2>
             @foreach ($cv['education'] ?? [] as $education)

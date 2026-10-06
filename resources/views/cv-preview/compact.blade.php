@@ -35,7 +35,7 @@
 
             <section x-show="cv.languages.some(item => item.name)">
                 <h3 class="tp-heading">Languages</h3>
-                <template x-for="item in cv.languages" :key="item.id"><p x-show="item.name" class="tp-copy"><b class="text-[#164e63]" x-text="item.name"></b><span x-text="item.level ? ' ' + item.level : ''"></span></p></template>
+                <template x-for="item in cv.languages" :key="item.id"><p x-show="item.name" class="tp-copy"><b class="text-[#164e63]" x-text="item.name"></b><span x-text="(item.proficiency || item.level) ? ' ' + (item.proficiency || item.level) : ''"></span></p></template>
             </section>
 
             <section x-show="cv.fullAddress || cv.fatherName || cv.domicile || cv.dateOfBirth || cv.cnicNumber">

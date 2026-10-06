@@ -1,24 +1,18 @@
 <article id="cv-preview" class="tp-paper relative overflow-hidden bg-white shadow-xl ring-1 ring-slate-200">
     <div class="tp-watermark" aria-hidden="true"><span x-text="((cv.name || 'Your Name').trim()) + ' CV'"></span></div>
 
-    <div class="tp-accent-bar relative z-10 h-1.5 bg-[#0f766e]"></div>
+    <div class="tp-accent-bar relative z-10 h-1.5 bg-[#1e3a8a]"></div>
 
     <header class="tp-header relative z-10 px-7 pb-5 pt-7 sm:px-10">
         <div class="flex items-center gap-5">
-            <div class="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#ccfbf1] text-2xl font-black text-[#0f766e]">
+            <div class="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#1e3a8a] text-2xl font-black text-[#67e8f9]">
                 <template x-if="cv.photo"><img :src="cv.photo" alt="Profile photo" class="h-full w-full object-cover"></template>
                 <span x-show="!cv.photo" x-text="initials()"></span>
             </div>
             <div class="min-w-0">
-                <p class="mb-1.5 text-[.6rem] font-bold uppercase tracking-[.22em] text-[#0f766e]" x-text="cv.headline || 'Professional title'"></p>
-                <h2 class="break-words text-3xl font-extrabold leading-tight text-[#134e4a]" x-text="cv.name || 'Your Name'"></h2>
+                <p class="mb-1.5 text-[.6rem] font-bold uppercase tracking-[.22em] text-[#1e3a8a]" x-text="cv.headline || 'Professional title'"></p>
+                <h2 class="break-words text-3xl font-extrabold leading-tight text-[1e293b]" x-text="cv.name || 'Your Name'"></h2>
             </div>
-        </div>
-        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[.66rem] text-slate-500">
-            <template x-for="contact in contactList()" :key="contact.label + contact.value">
-                <span><b class="text-[#0f766e]" x-text="contact.label"></b> <span x-text="contact.value"></span></span>
-            </template>
-            <span x-show="!contactList().length" class="text-slate-400">Add your contact details.</span>
         </div>
     </header>
 
@@ -73,20 +67,20 @@
 
         <section class="tp-card" x-show="cv.languages.some(item => item.name)">
             <h3 class="tp-heading">Languages</h3>
-            <p class="tp-copy"><template x-for="(item, index) in cv.languages" :key="item.id"><span x-show="item.name"><b class="text-[#134e4a]" x-text="item.name"></b><span x-text="(item.proficiency || item.level) ? ' · ' + (item.proficiency || item.level) : ''"></span><span x-show="index < cv.languages.length - 1">, </span></span></template></p>
+            <p class="tp-copy"><template x-for="(item, index) in cv.languages" :key="item.id"><span x-show="item.name"><b class="text-[#1e3a8a]" x-text="item.name"></b><span x-text="(item.proficiency || item.level) ? ' · ' + (item.proficiency || item.level) : ''"></span><span x-show="index < cv.languages.length - 1">, </span></span></template></p>
         </section>
 
         <section class="tp-card" x-show="cv.fullAddress || cv.fatherName || cv.domicile || cv.dateOfBirth || cv.cnicNumber">
             <h3 class="tp-heading">Personal details</h3>
             <div class="space-y-1 text-[.66rem] text-slate-600">
-                <p x-show="cv.fullAddress"><b class="text-[#134e4a]">Address:</b> <span x-text="cv.fullAddress"></span></p>
-                <p x-show="cv.fatherName"><b class="text-[#134e4a]">Father name:</b> <span x-text="cv.fatherName"></span></p>
-                <p x-show="cv.domicile"><b class="text-[#134e4a]">Domicile:</b> <span x-text="cv.domicile"></span></p>
-                <p x-show="cv.dateOfBirth"><b class="text-[#134e4a]">Date of birth:</b> <span x-text="cv.dateOfBirth"></span></p>
-                <p x-show="cv.cnicNumber"><b class="text-[#134e4a]">CNIC / ID:</b> <span x-text="cv.cnicNumber"></span></p>
+                <p x-show="cv.fullAddress"><b class="text-[#1e3a8a]">Address:</b> <span x-text="cv.fullAddress"></span></p>
+                <p x-show="cv.fatherName"><b class="text-[#1e3a8a]">Father name:</b> <span x-text="cv.fatherName"></span></p>
+                <p x-show="cv.domicile"><b class="text-[#1e3a8a]">Domicile:</b> <span x-text="cv.domicile"></span></p>
+                <p x-show="cv.dateOfBirth"><b class="text-[#1e3a8a]">Date of birth:</b> <span x-text="cv.dateOfBirth"></span></p>
+                <p x-show="cv.cinicNumber"><b class="text-[#1e3a8a]">CNIC / ID:</b> <span x-text="cv.cinicNumber"></span></p>
             </div>
         </section>
     </div>
 
-    <footer class="tp-footer relative z-10 h-1.5 bg-[#134e4a]"></footer>
+    <footer class="tp-footer relative z-10 h-1.5 bg-[#1e3a8a]"></footer>
 </article>
