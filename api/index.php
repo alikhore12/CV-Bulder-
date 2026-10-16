@@ -1,5 +1,11 @@
 <?php
 
+// Ensure HTTPS scheme is recognized behind Vercel edge reverse proxy
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    $_SERVER['HTTPS'] = 'on';
+    $_SERVER['SERVER_PORT'] = 443;
+}
+
 // Forward Vercel requests to normal Laravel index.php
 // Prepare writable /tmp directories for Vercel serverless execution
 $dirs = [
