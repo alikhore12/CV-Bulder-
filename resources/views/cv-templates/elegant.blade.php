@@ -6,30 +6,30 @@
     <style>
         @page { size: A4; margin: 0; }
         * { box-sizing: border-box; }
-        body { margin: 0; color: #3f3f46; font: 10px/1.6 DejaVu Serif, Georgia, serif; }
+        body { margin: 0; color: #3f3f46; font: 10px/1.6 DejaVu Serif, Georgia, serif; background: #fff; }
         .frame { padding: 16px; }
-        .sheet { padding: 30px 34px 34px; border: 1px solid #c9a227; }
+        .sheet { padding: 30px 34px 34px; border: 1.5px solid {{ $cv['color'] ?? '#c9a227' }}; }
         .head { padding-bottom: 22px; border-bottom: 2px solid #1f2937; text-align: center; }
-        .photo img { width: 92px; height: 92px; border-radius: 50%; border: 2px solid #c9a227; object-fit: cover; }
-        .title { margin-top: 12px; color: #a1801a; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8px; letter-spacing: 3.4px; text-transform: uppercase; }
+        .photo img { width: 92px; height: 92px; border-radius: 50%; border: 2px solid {{ $cv['color'] ?? '#c9a227' }}; object-fit: cover; }
+        .title { margin-top: 12px; color: {{ $cv['color'] ?? '#a1801a' }}; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8px; letter-spacing: 3.4px; text-transform: uppercase; }
         .name { margin: 9px 0 0; color: #111827; font-size: 30px; font-weight: bold; letter-spacing: .5px; }
         .contact-line { margin-top: 14px; color: #52525b; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8.5px; }
         .contact-line span { margin: 0 14px 0 0; }
         .body { padding-top: 22px; }
         .section { margin-bottom: 20px; }
         .heading { margin: 0 0 10px; color: #1f2937; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8.5px; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; }
-        .heading span { color: #c9a227; }
+        .heading span { color: {{ $cv['color'] ?? '#c9a227' }}; }
         .rule { margin: 0 0 9px; border-top: 1px solid #e7e5e4; }
         .summary { margin: 0; color: #3f3f46; font-style: italic; }
         .item { margin-bottom: 13px; padding-left: 14px; border-left: 2px solid #e7e5e4; }
         .item:last-child { margin-bottom: 0; }
         .item-title { color: #111827; font-size: 11px; font-weight: bold; }
-        .meta { margin-top: 1px; color: #a1801a; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8.5px; }
+        .meta { margin-top: 1px; color: {{ $cv['color'] ?? '#a1801a' }}; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8.5px; }
         .copy { margin: 4px 0 0; color: #52525b; }
-        .skills span { display: inline-block; margin: 0 8px 6px 0; padding: 3px 10px; border: 1px solid #c9a227; color: #78350f; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8.5px; }
+        .skills span { display: inline-block; margin: 0 8px 6px 0; padding: 3px 10px; border: 1px solid {{ $cv['color'] ?? '#c9a227' }}; color: #78350f; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8.5px; }
         .details { display: table; width: 100%; }
         .detail-cell { display: table-cell; width: 33.33%; vertical-align: top; padding-right: 12px; }
-        .footer { padding: 14px 34px; text-align: center; color: #a1801a; font-family: DejaVu Sans, Arial, sans-serif; font-size: 7px; letter-spacing: 2.4px; text-transform: uppercase; }
+        .footer { padding: 14px 34px; text-align: center; color: {{ $cv['color'] ?? '#a1801a' }}; font-family: DejaVu Sans, Arial, sans-serif; font-size: 7px; letter-spacing: 2.4px; text-transform: uppercase; }
         .watermark { position: fixed; top: 0; left: 0; width: 794px; height: 1123px; z-index: -1; }
         .watermark span { display: block; width: 794px; height: 1123px; padding-top: 619px; color: #ece9e2; font-size: {{ $watermarkSize ?? 77 }}px; font-weight: bold; line-height: 1.039; text-align: center; white-space: nowrap; transform: rotate(-30deg); }
     </style>

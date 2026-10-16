@@ -6,7 +6,9 @@ use App\Models\CvTemplate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'templates' => CvTemplate::activeOptions(),
+    ]);
 });
 
 Route::get('/cv-builder', function () {

@@ -6,12 +6,12 @@
     <style>
         @page { size: A4; margin: 0; }
         * { box-sizing: border-box; }
-        body { margin: 0; color: #3a3a3a; font: 10px/1.65 Georgia, 'DejaVu Serif', serif; }
+        body { margin: 0; color: #3a3a3a; font: 10px/1.65 Georgia, 'DejaVu Serif', serif; background: #fff; }
         .head { padding: 44px 48px 20px; text-align: center; }
         .photo img { width: 78px; height: 78px; border-radius: 50%; object-fit: cover; }
         .title { margin-top: 10px; color: #78716c; font-family: DejaVu Sans, Arial, sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; }
         .name { margin: 8px 0 0; color: #18181b; font-size: 27px; font-weight: normal; letter-spacing: 1px; }
-        .rule { width: 54px; margin: 14px auto 0; border-top: 1px solid #a8a29e; }
+        .rule { width: 54px; margin: 14px auto 0; border-top: 1.5px solid {{ $cv['color'] ?? '#a8a29e' }}; }
         .contact-line { margin-top: 13px; color: #57534e; font-family: DejaVu Sans, Arial, sans-serif; font-size: 9px; }
         .contact-line span { margin: 0 11px 0 0; }
         .body { padding: 6px 48px 40px; }
@@ -27,7 +27,7 @@
         .grid { display: table; width: 100%; }
         .cell { display: table-cell; width: 50%; vertical-align: top; padding-right: 18px; }
         .cell:last-child { padding-right: 0; padding-left: 18px; }
-        .footer { height: 3px; margin: 0 48px 20px; background: #a8a29e; }
+        .footer { height: 3px; margin: 0 48px 20px; background: {{ $cv['color'] ?? '#a8a29e' }}; }
         .watermark { position: fixed; top: 0; left: 0; width: 794px; height: 1123px; z-index: -1; }
         .watermark span { display: block; width: 794px; height: 1123px; padding-top: 619px; color: #eceae7; font-size: {{ $watermarkSize ?? 77 }}px; font-weight: bold; line-height: 1.039; text-align: center; white-space: nowrap; transform: rotate(-30deg); }
     </style>

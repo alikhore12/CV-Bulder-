@@ -6,8 +6,8 @@
     <style>
         @page { size: A4; margin: 0; }
         * { box-sizing: border-box; }
-        body { margin: 0; color: #3f3f46; font: 8.6px/1.45 DejaVu Sans, Arial, sans-serif; }
-        .head { padding: 22px 30px 16px; background: #164e63; color: #fff; }
+        body { margin: 0; color: #3f3f46; font: 8.6px/1.45 DejaVu Sans, Arial, sans-serif; background: #fff; }
+        .head { padding: 22px 30px 16px; background: {{ $cv['color'] ?? '#164e63' }}; color: #fff; }
         .identity { display: table; width: 100%; }
         .photo, .head-main { display: table-cell; vertical-align: middle; }
         .photo { width: 78px; }
@@ -23,12 +23,12 @@
         .left { width: 30%; padding-right: 16px; border-right: 1px solid #e2e8f0; }
         .right { width: 70%; padding-left: 18px; }
         .section { margin-bottom: 14px; }
-        .heading { margin: 0 0 6px; padding: 0 0 3px 6px; border-bottom: 1px solid #164e63; color: #164e63; font-size: 7.5px; font-weight: bold; letter-spacing: 1.6px; text-transform: uppercase; }
+        .heading { margin: 0 0 6px; padding: 0 0 3px 6px; border-bottom: 1.5px solid {{ $cv['color'] ?? '#164e63' }}; color: {{ $cv['color'] ?? '#164e63' }}; font-size: 7.5px; font-weight: bold; letter-spacing: 1.6px; text-transform: uppercase; }
         .copy { margin: 0; color: #52525b; }
         .contact p { margin: 0 0 3px; }
-        .contact b, .meta, .tags b { color: #0891b2; }
+        .contact b, .meta, .tags b { color: {{ $cv['color'] ?? '#0891b2' }}; }
         .item { margin-bottom: 9px; }
-        .item-title { color: #164e63; font-weight: bold; }
+        .item-title { color: {{ $cv['color'] ?? '#164e63' }}; font-weight: bold; }
         .meta { font-size: 7.8px; font-weight: bold; }
         .tags span { display: inline-block; margin: 0 6px 4px 0; padding: 2px 6px; border: 1px solid #a5f3fc; border-radius: 3px; background: #ecfeff; color: #155e75; font-size: 7.8px; }
         .rows { margin: 0; }

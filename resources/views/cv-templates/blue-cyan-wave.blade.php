@@ -94,7 +94,13 @@
             <div class="c-wave c-wave-6"></div>
         </div>
         <div class="profile-card">
-            <img src="{{ !empty($cv['photo']) ? $cv['photo'] : 'https://via.placeholder.com/150' }}" alt="Profile" class="profile-img">
+            @if (!empty($cv['photo']) && str_starts_with($cv['photo'], 'data:image/'))
+                <img src="{{ $cv['photo'] }}" alt="Profile" class="profile-img">
+            @else
+                <div style="display:inline-block;width:25mm;height:25mm;border:2px solid #fff;border-radius:50%;background:#26356F;color:#fff;font-size:14pt;font-weight:bold;line-height:25mm;text-align:center;">
+                    {{ collect(explode(' ', trim($cv['name'] ?? 'YN')))->map(fn ($word) => substr($word, 0, 1))->join('') }}
+                </div>
+            @endif
             <div>
                 <h1 class="name">{{ $cv['name'] ?? 'Your Name' }}</h1>
                 <p class="designation">{{ $cv['headline'] ?? 'Professional title' }}</p>

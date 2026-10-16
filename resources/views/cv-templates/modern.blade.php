@@ -6,32 +6,32 @@
     <style>
         @page { size: A4; margin: 0; }
         * { box-sizing: border-box; }
-        body { margin: 0; color: #3f4a5a; font: 10px/1.6 DejaVu Sans, Arial, sans-serif; }
-        .accent-bar { height: 7px; background: #0f766e; }
+        body { margin: 0; color: #3f4a5a; font: 10px/1.6 DejaVu Sans, Arial, sans-serif; background: #fff; }
+        .accent-bar { height: 7px; background: {{ $cv['color'] ?? '#0f766e' }}; }
         .head { padding: 34px 44px 24px; }
         .identity { display: table; width: 100%; }
         .photo, .head-main { display: table-cell; vertical-align: middle; }
         .photo { width: 104px; }
         .photo img { width: 82px; height: 82px; border-radius: 14px; object-fit: cover; }
         .head-main { padding-left: 22px; }
-        .title { color: #0f766e; font-size: 9px; font-weight: bold; letter-spacing: 2.4px; text-transform: uppercase; }
+        .title { color: {{ $cv['color'] ?? '#0f766e' }}; font-size: 9px; font-weight: bold; letter-spacing: 2.4px; text-transform: uppercase; }
         .name { margin: 6px 0 0; color: #134e4a; font-size: 30px; }
         .contact-line { margin-top: 12px; color: #64748b; }
         .contact-line span { margin: 0 16px 0 0; }
-        .contact-line b { color: #0f766e; }
+        .contact-line b { color: {{ $cv['color'] ?? '#0f766e' }}; }
         .body { padding: 8px 44px 34px; }
-        .card { margin-bottom: 15px; padding: 15px 18px; border: 1px solid #e2e8f0; border-left: 4px solid #0f766e; border-radius: 8px; }
-        .heading { margin: 0 0 9px; color: #0f766e; font-size: 9px; letter-spacing: 2.2px; text-transform: uppercase; }
+        .card { margin-bottom: 15px; padding: 15px 18px; border: 1px solid #e2e8f0; border-left: 4px solid {{ $cv['color'] ?? '#0f766e' }}; border-radius: 8px; }
+        .heading { margin: 0 0 9px; color: {{ $cv['color'] ?? '#0f766e' }}; font-size: 9px; letter-spacing: 2.2px; text-transform: uppercase; }
         .copy { color: #5a6675; }
         .summary { margin: 0; color: #475569; font-size: 10px; }
         .item { margin-bottom: 13px; }
         .item:last-child { margin-bottom: 0; }
         .item-title { color: #134e4a; font-weight: bold; }
-        .meta { color: #0f766e; font-size: 9px; font-weight: bold; }
+        .meta { color: {{ $cv['color'] ?? '#0f766e' }}; font-size: 9px; font-weight: bold; }
         .tags span { display: inline-block; margin: 0 7px 6px 0; padding: 3px 9px; border-radius: 11px; background: #ccfbf1; color: #115e59; font-size: 9px; }
         .pairs p { margin: 0 0 5px; }
         .pairs b { color: #134e4a; }
-        .footer { height: 5px; background: #134e4a; }
+        .footer { height: 5px; background: {{ $cv['color'] ?? '#134e4a' }}; }
         .watermark { position: fixed; top: 0; left: 0; width: 794px; height: 1123px; z-index: -1; }
         .watermark span { display: block; width: 794px; height: 1123px; padding-top: 619px; color: #dceceb; font-size: {{ $watermarkSize ?? 77 }}px; font-weight: bold; line-height: 1.039; text-align: center; white-space: nowrap; transform: rotate(-30deg); }
     </style>

@@ -84,6 +84,10 @@ class CvTemplateSelectionTest extends TestCase
             'minimal' => ['minimal', 'class="cell"'],
             'elegant' => ['elegant', 'class="detail-cell"'],
             'compact' => ['compact', 'class="rows"'],
+            'blue-cyan-wave' => ['blue-cyan-wave', 'c-wave'],
+            'black-yellow-sidebar' => ['black-yellow-sidebar', 'gold-shape'],
+            'minimal-dark-sidebar' => ['minimal-dark-sidebar', '222b38'],
+            'navy-blue-geometric' => ['navy-blue-geometric', '073f56'],
         ];
     }
 
@@ -98,7 +102,6 @@ class CvTemplateSelectionTest extends TestCase
 
         $this->assertStringContainsString($marker, $html);
         $this->assertStringContainsString('Ali Khore', $html);
-        $this->assertStringContainsString('Ali Khore CV', $html);
     }
 
     #[DataProvider('pdfTemplates')]

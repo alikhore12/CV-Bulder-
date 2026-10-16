@@ -6,6 +6,7 @@ use App\Models\CvTemplate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class CvPdfController extends Controller
@@ -34,7 +35,7 @@ class CvPdfController extends Controller
             'color' => ['nullable', 'regex:/^#[0-9a-fA-F]{6}$/'],
             'fatherName' => ['nullable', 'string', 'max:150'],
             'domicile' => ['nullable', 'string', 'max:150'],
-            'dateOfBirth' => ['nullable', 'date'],
+            'dateOfBirth' => ['nullable', 'string', 'max:50'],
             'cnicNumber' => ['nullable', 'string', 'max:30'],
             'fullAddress' => ['nullable', 'string', 'max:500'],
             'otherInformation' => ['nullable', 'string', 'max:2000'],
@@ -42,16 +43,16 @@ class CvPdfController extends Controller
             'company' => ['nullable', 'string', 'max:150'],
             'startDate' => ['nullable', 'string', 'max:50'],
             'endDate' => ['nullable', 'string', 'max:50'],
-            'summary' => ['nullable', 'string', 'max:3000'],
+            'summary' => ['nullable', 'string', 'max:5000'],
             'skills' => ['nullable'],
             'education' => ['nullable', 'array', 'max:20'],
             'education.*.degree' => ['nullable', 'string', 'max:150'],
             'education.*.field' => ['nullable', 'string', 'max:150'],
             'education.*.institution' => ['nullable', 'string', 'max:200'],
             'education.*.location' => ['nullable', 'string', 'max:150'],
-            'education.*.startYear' => ['nullable', 'string', 'max:20'],
-            'education.*.endYear' => ['nullable', 'string', 'max:20'],
-            'education.*.description' => ['nullable', 'string', 'max:1000'],
+            'education.*.startYear' => ['nullable', 'string', 'max:50'],
+            'education.*.endYear' => ['nullable', 'string', 'max:50'],
+            'education.*.description' => ['nullable', 'string', 'max:2000'],
             'education.*.totalMarks' => ['nullable', 'string', 'max:50'],
             'education.*.obtainedMarks' => ['nullable', 'string', 'max:50'],
             'education.*.percentage' => ['nullable', 'string', 'max:50'],
@@ -61,8 +62,8 @@ class CvPdfController extends Controller
             'experience.*.location' => ['nullable', 'string', 'max:150'],
             'experience.*.startDate' => ['nullable', 'string', 'max:50'],
             'experience.*.endDate' => ['nullable', 'string', 'max:50'],
-            'experience.*.current' => ['nullable', 'boolean'],
-            'experience.*.description' => ['nullable', 'string', 'max:3000'],
+            'experience.*.current' => ['nullable'],
+            'experience.*.description' => ['nullable', 'string', 'max:5000'],
             'languages' => ['nullable', 'array', 'max:20'],
             'languages.*.name' => ['nullable', 'string', 'max:100'],
             'languages.*.proficiency' => ['nullable', 'string', 'max:100'],
@@ -71,22 +72,22 @@ class CvPdfController extends Controller
             'certifications.*.name' => ['nullable', 'string', 'max:150'],
             'certifications.*.organization' => ['nullable', 'string', 'max:150'],
             'certifications.*.date' => ['nullable', 'string', 'max:50'],
-            'certifications.*.issueDate' => ['nullable', 'date_format:Y-m'],
-            'certifications.*.expiryDate' => ['nullable', 'date_format:Y-m'],
+            'certifications.*.issueDate' => ['nullable', 'string', 'max:50'],
+            'certifications.*.expiryDate' => ['nullable', 'string', 'max:50'],
             'certifications.*.credentialId' => ['nullable', 'string', 'max:100'],
-            'certifications.*.credentialUrl' => ['nullable', 'url', 'max:500'],
+            'certifications.*.credentialUrl' => ['nullable', 'string', 'max:500'],
             'projects' => ['nullable', 'array', 'max:20'],
             'projects.*.name' => ['nullable', 'string', 'max:200'],
             'projects.*.role' => ['nullable', 'string', 'max:150'],
             'projects.*.technologies' => ['nullable', 'string', 'max:500'],
-            'projects.*.url' => ['nullable', 'url', 'max:500'],
-            'projects.*.githubUrl' => ['nullable', 'url', 'max:500'],
-            'projects.*.description' => ['nullable', 'string', 'max:3000'],
+            'projects.*.url' => ['nullable', 'string', 'max:500'],
+            'projects.*.githubUrl' => ['nullable', 'string', 'max:500'],
+            'projects.*.description' => ['nullable', 'string', 'max:5000'],
             'references' => ['nullable', 'array', 'max:10'],
             'references.*.name' => ['nullable', 'string', 'max:150'],
             'references.*.position' => ['nullable', 'string', 'max:150'],
             'references.*.company' => ['nullable', 'string', 'max:200'],
-            'references.*.email' => ['nullable', 'email', 'max:255'],
+            'references.*.email' => ['nullable', 'string', 'max:255'],
             'references.*.phone' => ['nullable', 'string', 'max:50'],
             'references.*.relationship' => ['nullable', 'string', 'max:500'],
         ]);
@@ -136,13 +137,17 @@ class CvPdfController extends Controller
 
         $watermarkText = trim(($cv['name'] ?? '').' CV');
 
+        $safeFilename = filled($cv['name'] ?? '')
+            ? Str::slug($cv['name']).'-cv.pdf'
+            : 'cv-bulder.pdf';
+
         return Pdf::loadView(CvTemplate::viewFor($templateSlug), [
             'cv' => $cv,
             'watermarkText' => $watermarkText,
             'watermarkSize' => $this->watermarkFontSize($watermarkText),
         ])
             ->setPaper('a4')
-            ->download('cvcraft-cv.pdf');
+            ->download($safeFilename);
     }
 
     /**

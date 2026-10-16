@@ -1,0 +1,11 @@
+.git
+.github
+.agents
+.claude
+.cursor
+node_modules
+tests
+phpunit.xml
+.env
+.env.example
+*.md

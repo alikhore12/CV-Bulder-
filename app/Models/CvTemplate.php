@@ -18,9 +18,19 @@ class CvTemplate extends Model
      * The list doubles as a whitelist: a request may only ever render one of
      * these known views, never an arbitrary user-supplied view name.
      */
-    public const SLUGS = ['blue-cyan-wave', 'black-yellow-sidebar', 'minimal-dark-sidebar', 'navy-blue-geometric'];
+    public const SLUGS = [
+        'classic',
+        'modern',
+        'minimal',
+        'elegant',
+        'compact',
+        'blue-cyan-wave',
+        'black-yellow-sidebar',
+        'minimal-dark-sidebar',
+        'navy-blue-geometric',
+    ];
 
-    public const DEFAULT_SLUG = 'black-yellow-sidebar';
+    public const DEFAULT_SLUG = 'classic';
 
     protected $table = 'cv_templates';
 
@@ -63,28 +73,47 @@ class CvTemplate extends Model
     public static function catalog(): array
     {
         $catalog = [
-            [
+            'classic' => [
+                'name' => 'Blue Professional',
+                'description' => 'Navy header with angled accent shapes and a two-column layout.',
+            ],
+            'modern' => [
+                'name' => 'Modern Teal',
+                'description' => 'Accent bar header with bordered section cards, roomy and readable.',
+            ],
+            'minimal' => [
+                'name' => 'Minimal Serif',
+                'description' => 'Centred serif header, thin rules and generous white space.',
+            ],
+            'elegant' => [
+                'name' => 'Elegant Gold',
+                'description' => 'Framed sheet with gold accents and classic serif typography.',
+            ],
+            'compact' => [
+                'name' => 'Compact Cyan',
+                'description' => 'Dense two-column layout that fits more content on one page.',
+            ],
+            'blue-cyan-wave' => [
                 'name' => 'Blue Cyan Wave Resume',
                 'description' => 'Colorful A4 CV with deep navy and bright cyan wave decorative elements.',
             ],
-            [
+            'black-yellow-sidebar' => [
                 'name' => 'Black/Yellow Modern Sidebar',
                 'description' => 'Professional vertical resume with dark sidebar and yellow accent highlights.',
             ],
-            [
+            'minimal-dark-sidebar' => [
                 'name' => 'Minimal Dark Sidebar Professional',
                 'description' => 'Premium corporate CV with dark sidebar and clean white content area.',
             ],
-            [
+            'navy-blue-geometric' => [
                 'name' => 'Navy Blue Creative Geometric',
                 'description' => 'Highly visual creative CV with deep navy background and geometric design elements.',
             ],
         ];
 
         return array_map(
-            fn (string $slug, int $index): array => ['slug' => $slug] + $catalog[$index],
+            fn (string $slug): array => ['slug' => $slug, ...$catalog[$slug]],
             self::SLUGS,
-            array_keys($catalog),
         );
     }
 

@@ -6,9 +6,9 @@
     <style>
         @page { size: A4; margin: 0; }
         * { box-sizing: border-box; }
-        body { margin: 0; color: #475569; font: 10px/1.55 DejaVu Sans, Arial, sans-serif; }
+        body { margin: 0; color: #475569; font: 10px/1.55 DejaVu Sans, Arial, sans-serif; background: #fff; }
         .header { height: 165px; position: relative; overflow: hidden; padding: 35px 42px; background: #0a2c4f; color: #fff; }
-        .shape { position: absolute; right: -8%; top: -50%; width: 32%; height: 220%; background: #0d6efd; transform: skewX(-28deg); }
+        .shape { position: absolute; right: -8%; top: -50%; width: 32%; height: 220%; background: {{ $cv['color'] ?? '#0d6efd' }}; transform: skewX(-28deg); }
         .shape-two { right: 13%; top: auto; bottom: -72%; width: 11%; height: 180%; background: #65a7ff; opacity: .55; }
         .identity { position: relative; z-index: 1; display: table; width: 100%; }
         .photo, .identity-main { display: table-cell; vertical-align: middle; }
@@ -21,10 +21,10 @@
         .left { width: 31%; padding-right: 25px; border-right: 1px solid #e2e8f0; }
         .right { padding-left: 28px; }
         .section { margin-bottom: 23px; }
-        .heading { margin: 0 0 10px; padding-bottom: 5px; border-bottom: 2px solid #0d6efd; color: #0d6efd; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
+        .heading { margin: 0 0 10px; padding-bottom: 5px; border-bottom: 2px solid {{ $cv['color'] ?? '#0d6efd' }}; color: {{ $cv['color'] ?? '#0d6efd' }}; font-size: 9px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
         .copy { color: #64748b; }
         .contact p { margin: 0 0 7px; }
-        .contact b, .meta, .skills b { color: #0d6efd; }
+        .contact b, .meta, .skills b { color: {{ $cv['color'] ?? '#0d6efd' }}; }
         .item { margin-bottom: 14px; }
         .item-title { color: #0a2c4f; font-weight: bold; }
         .meta { font-size: 9px; font-weight: bold; }
@@ -33,7 +33,6 @@
         .watermark { position: fixed; top: 0; left: 0; width: 794px; height: 1123px; z-index: -1; }
         .watermark span { display: block; width: 794px; height: 1123px; padding-top: 619px; color: #dde5ef; font-size: {{ $watermarkSize ?? 77 }}px; font-weight: bold; line-height: 1.039; text-align: center; white-space: nowrap; transform: rotate(-30deg); }
     </style>
-    <style>.left section:nth-child(3) { display: none; }</style>
 </head>
 <body>
     <div class="watermark"><span>{{ $watermarkText ?? trim(($cv['name'] ?? '').' CV') }}</span></div>
