@@ -163,6 +163,31 @@
     [data-cv-template="navy-blue-geometric"] .tp-card .meta { color:#64748b; font-size:.72rem; }
     [data-cv-template="navy-blue-geometric"] .tp-tag { display:inline-block; margin:0 4px 4px 0; padding:2px 6px; background:#3b82f6; color:#fff; border-radius:4px; font-size:.65rem; text-transform:uppercase; letter-spacing:1px; }
 
+    /* ========================================================
+       10. Royal Blue Tech Sidebar
+       ======================================================== */
+    [data-cv-template="royal-blue-sidebar"] .tp-watermark span { color: #f1f5f9; }
+
+    /* ========================================================
+       11. Creative Purple Designer
+       ======================================================== */
+    [data-cv-template="creative-purple-wave"] .tp-watermark span { color: #faf5ff; }
+
+    /* ========================================================
+       12. Emerald Data Analyst
+       ======================================================== */
+    [data-cv-template="emerald-data-analyst"] .tp-watermark span { color: #f0fdf4; }
+
+    /* ========================================================
+       13. Warm Amber Creative
+       ======================================================== */
+    [data-cv-template="warm-amber-writer"] .tp-watermark span { color: #fefce8; }
+
+    /* ========================================================
+       14. Teal Developer Wave
+       ======================================================== */
+    [data-cv-template="teal-developer-wave"] .tp-watermark span { color: #f0fdfa; }
+
     @media print {
         nav, header:not(.tp-header), form, main > div > div:first-child, aside > div:first-child { display:none !important; }
         body, .min-h-screen { background:#fff !important; }

@@ -28,6 +28,11 @@ class CvTemplate extends Model
         'black-yellow-sidebar',
         'minimal-dark-sidebar',
         'navy-blue-geometric',
+        'royal-blue-sidebar',
+        'creative-purple-wave',
+        'emerald-data-analyst',
+        'warm-amber-writer',
+        'teal-developer-wave',
     ];
 
     public const DEFAULT_SLUG = 'classic';
@@ -108,6 +113,26 @@ class CvTemplate extends Model
             'navy-blue-geometric' => [
                 'name' => 'Navy Blue Creative Geometric',
                 'description' => 'Highly visual creative CV with deep navy background and geometric design elements.',
+            ],
+            'royal-blue-sidebar' => [
+                'name' => 'Royal Blue Tech Sidebar',
+                'description' => 'Deep royal blue sidebar with cyan progress bars and badge-driven sections.',
+            ],
+            'creative-purple-wave' => [
+                'name' => 'Creative Purple Designer',
+                'description' => 'Purple creative theme with dot rating skills, design tool badges, and flowing wave curves.',
+            ],
+            'emerald-data-analyst' => [
+                'name' => 'Emerald Data Analyst',
+                'description' => 'Clean emerald green header with right contact block, data skill bars, and competency cards.',
+            ],
+            'warm-amber-writer' => [
+                'name' => 'Warm Amber Creative',
+                'description' => 'Warm golden-amber sidebar with rating dots, project highlight cards, and sunset waves.',
+            ],
+            'teal-developer-wave' => [
+                'name' => 'Teal Developer Wave',
+                'description' => 'Deep petrol teal sidebar with glowing photo frame, code illustration accents, and bottom waves.',
             ],
         ];
 

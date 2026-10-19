@@ -709,7 +709,7 @@
                     { id: 'certifications', title: 'Certifications & Credentials', subtitle: 'Verified credentials, issuers & online links', open: false },
                     { id: 'languages', title: 'Languages', subtitle: 'Languages and fluency proficiency levels', open: false },
                     { id: 'references', title: 'References', subtitle: 'Professional contacts or availability declaration', open: false },
-                    { id: 'design', title: 'Template & Design Style', subtitle: 'Choose from 9 templates, accents & ATS mode', open: false }
+                    { id: 'design', title: 'Template & Design Style', subtitle: 'Choose from 14 professional templates, accents & ATS mode', open: false }
                 ],
 
                 init() {

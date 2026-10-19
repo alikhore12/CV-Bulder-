@@ -364,6 +364,257 @@
                 </div>
             </div>
 
+        @elseif ($slug === 'royal-blue-sidebar')
+            {{-- 10. Royal Blue Tech Sidebar --}}
+            <div class="grid h-full grid-cols-[36%_64%] bg-white">
+                <div class="flex flex-col justify-between bg-[#0b325b] p-1.5 text-white">
+                    <div>
+                        <div class="mx-auto h-7 w-7 rounded-full border border-white/80 bg-[#1e4a78] grid place-items-center text-[7px] font-black text-cyan-300">
+                            MH
+                        </div>
+                        <p class="mt-1 truncate text-center text-[5.5px] font-black uppercase text-white">M. Hamza</p>
+                        <p class="truncate text-center text-[3.8px] font-bold uppercase tracking-wider text-[#38bdf8]">Software Eng</p>
+                        
+                        <div class="mt-2 space-y-1 border-t border-white/20 pt-1 text-[3.5px] text-slate-200">
+                            <p class="truncate">☎ +92 301 1234</p>
+                            <p class="truncate">✉ hamza@dev.io</p>
+                            <p class="truncate">⌖ Lahore, PK</p>
+                        </div>
+
+                        <div class="mt-2 space-y-1 border-t border-white/20 pt-1">
+                            <p class="text-[3.8px] font-bold uppercase text-white">Skills</p>
+                            <div class="space-y-0.5">
+                                <div class="h-0.8 w-full rounded-full bg-[#082547]"><div class="h-full w-4/5 rounded-full bg-[#00b4d8]"></div></div>
+                                <div class="h-0.8 w-full rounded-full bg-[#082547]"><div class="h-full w-3/4 rounded-full bg-[#00b4d8]"></div></div>
+                                <div class="h-0.8 w-full rounded-full bg-[#082547]"><div class="h-full w-5/6 rounded-full bg-[#00b4d8]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-2 rounded-t-full bg-cyan-400/20"></div>
+                </div>
+                <div class="flex flex-col justify-between p-1.5 text-[4px]">
+                    <div class="space-y-1.5">
+                        <div>
+                            <p class="font-bold uppercase text-[#0b325b] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#0b325b] text-[3px] text-white grid place-items-center">★</span> About Me</p>
+                            <p class="text-[3.5px] text-slate-500 line-clamp-2">Detail-oriented software engineer delivering scalable modern web applications.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-[#0b325b] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#0b325b] text-[3px] text-white grid place-items-center">🎓</span> Education</p>
+                            <p class="font-bold text-slate-800 text-[4px]">BS Computer Science</p>
+                            <p class="text-[3.2px] text-slate-400">Univ of Lahore · CGPA 3.45</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-[#0b325b] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#0b325b] text-[3px] text-white grid place-items-center">💼</span> Experience</p>
+                            <p class="font-bold text-slate-800 text-[4px]">Software Engineer Intern</p>
+                            <p class="text-[3.2px] text-[#00b4d8] font-semibold">ABC Tech Solutions</p>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full rounded-tl-full bg-[#0b325b]/10"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'creative-purple-wave')
+            {{-- 11. Creative Purple Designer --}}
+            <div class="grid h-full grid-cols-[36%_64%] bg-white">
+                <div class="flex flex-col justify-between bg-[#faf5ff] border-r border-purple-100 p-1.5 text-slate-700">
+                    <div>
+                        <div class="mx-auto h-7 w-7 rounded-full border-2 border-purple-400 bg-purple-100 grid place-items-center text-[7px] font-black text-[#7c3aed]">
+                            UA
+                        </div>
+                        <p class="mt-1 truncate text-center text-[5.5px] font-black uppercase text-[#6b21a8]">Usman Ali</p>
+                        <p class="truncate text-center text-[3.8px] font-bold uppercase tracking-wider text-[#9333ea]">UI/UX Designer</p>
+                        
+                        <div class="mt-2 space-y-0.8 border-t border-purple-200/60 pt-1 text-[3.5px] text-slate-600">
+                            <p class="truncate">☎ +92 301 9876</p>
+                            <p class="truncate">✉ usman@design.io</p>
+                            <p class="truncate">⌖ Karachi, PK</p>
+                        </div>
+
+                        <div class="mt-2 space-y-0.8 border-t border-purple-200/60 pt-1">
+                            <p class="text-[3.8px] font-bold uppercase text-slate-800">Skills</p>
+                            <div class="text-[3.5px] text-[#9333ea]">
+                                <p class="flex justify-between"><span>UI Design</span><span>●●●●○</span></p>
+                                <p class="flex justify-between"><span>Figma</span><span>●●●●●</span></p>
+                                <p class="flex justify-between"><span>Adobe XD</span><span>●●●●○</span></p>
+                            </div>
+                        </div>
+
+                        <div class="mt-1.5 flex gap-0.5 justify-center">
+                            <span class="rounded bg-[#ea4c89] px-0.5 text-[3px] font-bold text-white">Fg</span>
+                            <span class="rounded bg-[#470137] px-0.5 text-[3px] font-bold text-[#ff61f6]">XD</span>
+                            <span class="rounded bg-[#001e36] px-0.5 text-[3px] font-bold text-[#31a8ff]">Ps</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between p-1.5 text-[4px]">
+                    <div class="space-y-1.5">
+                        <div>
+                            <p class="font-bold uppercase text-[#6b21a8] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#7c3aed] text-[3px] text-white grid place-items-center">★</span> About Me</p>
+                            <p class="text-[3.5px] text-slate-500 line-clamp-2">Creative UI/UX designer crafting intuitive digital experiences.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-[#6b21a8] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#7c3aed] text-[3px] text-white grid place-items-center">🎓</span> Education</p>
+                            <p class="font-bold text-slate-900 text-[4px]">BS Software Engineering</p>
+                            <p class="text-[3.2px] text-[#7c3aed]">NED University · 3.30</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-[#6b21a8] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#7c3aed] text-[3px] text-white grid place-items-center">💼</span> Experience</p>
+                            <p class="font-bold text-slate-900 text-[4px]">UI/UX Design Intern</p>
+                            <p class="text-[3.2px] text-[#7c3aed]">Creative Agency · 2023</p>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full rounded-t-full bg-purple-200/40"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'emerald-data-analyst')
+            {{-- 12. Emerald Data Analyst --}}
+            <div class="flex h-full flex-col bg-white">
+                <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border-b border-emerald-100 p-1.5 flex justify-between items-center">
+                    <div class="flex items-center gap-1">
+                        <div class="h-6 w-6 rounded-full border-2 border-[#10b981] bg-emerald-100 grid place-items-center text-[6px] font-black text-[#059669]">
+                            AI
+                        </div>
+                        <div>
+                            <p class="text-[5.5px] font-black uppercase text-slate-900 leading-none">Ahsan Iqbal</p>
+                            <p class="text-[3.8px] font-bold uppercase text-[#059669] mt-0.5">Data Analyst</p>
+                        </div>
+                    </div>
+                    <div class="text-[3px] text-slate-500 text-right space-y-0.2">
+                        <p>☎ +92 312 5556</p>
+                        <p>✉ ahsan@analyst.me</p>
+                    </div>
+                </div>
+                <div class="p-1.5 space-y-1 text-[4px] flex-1">
+                    <div>
+                        <p class="font-bold uppercase text-[#059669] text-[4.2px]">About Me</p>
+                        <p class="text-[3.5px] text-slate-500 line-clamp-1">Detail-oriented Data Analyst with experience in analyzing complex datasets.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-1">
+                        <div class="space-y-0.8">
+                            <p class="font-bold uppercase text-[#059669] text-[4px]">Education</p>
+                            <p class="font-bold text-[3.8px] text-slate-800">BS Statistics</p>
+                            <p class="text-[3.2px] text-slate-400">QAU · CGPA 3.62</p>
+                            <div class="space-y-0.5 pt-0.5">
+                                <div class="h-0.8 w-full bg-slate-100 rounded-full"><div class="h-full w-4/5 bg-[#10b981] rounded-full"></div></div>
+                                <div class="h-0.8 w-full bg-slate-100 rounded-full"><div class="h-full w-3/4 bg-[#10b981] rounded-full"></div></div>
+                            </div>
+                        </div>
+                        <div class="space-y-0.8">
+                            <p class="font-bold uppercase text-[#059669] text-[4px]">Experience</p>
+                            <p class="font-bold text-[3.8px] text-slate-800">Data Analyst Intern</p>
+                            <p class="text-[3.2px] text-[#059669]">Data Insights Pvt</p>
+                            <p class="font-bold uppercase text-[#059669] text-[4px] pt-0.5">Projects</p>
+                            <p class="text-[3.2px] text-slate-600">Sales Dashboard (Power BI)</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-0.5 pt-1 border-t border-slate-100">
+                        <div class="rounded border border-emerald-200 bg-emerald-50/50 p-0.5 text-center text-[3px] font-bold text-slate-700">Analytic</div>
+                        <div class="rounded border border-emerald-200 bg-emerald-50/50 p-0.5 text-center text-[3px] font-bold text-slate-700">Solving</div>
+                        <div class="rounded border border-emerald-200 bg-emerald-50/50 p-0.5 text-center text-[3px] font-bold text-slate-700">Detail</div>
+                        <div class="rounded border border-emerald-200 bg-emerald-50/50 p-0.5 text-center text-[3px] font-bold text-slate-700">Comms</div>
+                    </div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'warm-amber-writer')
+            {{-- 13. Warm Amber Creative --}}
+            <div class="grid h-full grid-cols-[36%_64%] bg-white">
+                <div class="flex flex-col justify-between bg-[#fffbeb] border-r border-amber-200 p-1.5 text-slate-700">
+                    <div>
+                        <div class="mx-auto h-7 w-7 rounded-full border-2 border-amber-400 bg-amber-100 grid place-items-center text-[7px] font-black text-amber-800">
+                            TR
+                        </div>
+                        <p class="mt-1 truncate text-center text-[5.5px] font-black uppercase text-slate-900">Talha Raza</p>
+                        <p class="truncate text-center text-[3.8px] font-bold uppercase tracking-wider text-[#ea580c]">Content Writer</p>
+                        
+                        <div class="mt-2 space-y-0.8 border-t border-amber-200 pt-1 text-[3.5px] text-slate-600">
+                            <p class="truncate">☎ +92 333 4445</p>
+                            <p class="truncate">✉ talha@writer.io</p>
+                            <p class="truncate">⌖ Faisalabad, PK</p>
+                        </div>
+
+                        <div class="mt-2 space-y-0.8 border-t border-amber-200 pt-1">
+                            <p class="text-[3.8px] font-bold uppercase text-slate-800">Skills</p>
+                            <div class="text-[3.5px] text-[#f59e0b]">
+                                <p class="flex justify-between"><span>Content</span><span>●●●●●</span></p>
+                                <p class="flex justify-between"><span>SEO</span><span>●●●●○</span></p>
+                                <p class="flex justify-between"><span>Editing</span><span>●●●●○</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mx-auto h-3 w-3 rounded-t-xs bg-amber-400/50"></div>
+                </div>
+                <div class="flex flex-col justify-between p-1.5 text-[4px]">
+                    <div class="space-y-1.5">
+                        <div>
+                            <p class="font-bold uppercase text-slate-900 text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#ea580c] text-[3px] text-white grid place-items-center">★</span> About Me</p>
+                            <p class="text-[3.5px] text-slate-500 line-clamp-2">Creative content writer with passion for engaging and SEO-friendly copy.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-slate-900 text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#ea580c] text-[3px] text-white grid place-items-center">💼</span> Experience</p>
+                            <p class="font-bold text-slate-900 text-[4px]">Content Writer</p>
+                            <p class="text-[3.2px] text-[#ea580c]">Digital World · 2022–Pres</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-slate-900 text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#ea580c] text-[3px] text-white grid place-items-center">📁</span> Projects</p>
+                            <div class="grid grid-cols-2 gap-0.5">
+                                <div class="rounded border border-amber-200 bg-amber-50/50 p-0.5 text-[3.2px]">Tech Blog</div>
+                                <div class="rounded border border-amber-200 bg-amber-50/50 p-0.5 text-[3.2px]">Product Copy</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full rounded-tl-full bg-gradient-to-r from-amber-200 to-orange-300"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'teal-developer-wave')
+            {{-- 14. Teal Developer Wave --}}
+            <div class="grid h-full grid-cols-[36%_64%] bg-white">
+                <div class="flex flex-col justify-between bg-[#005f73] p-1.5 text-white">
+                    <div>
+                        <div class="mx-auto h-7 w-7 rounded-full border-2 border-[#2dd4bf] bg-[#0a9396] grid place-items-center text-[7px] font-black text-white">
+                            BK
+                        </div>
+                        <p class="mt-1 truncate text-center text-[5.5px] font-black uppercase text-white">Bilal Khan</p>
+                        <p class="truncate text-center text-[3.8px] font-bold uppercase tracking-wider text-[#2dd4bf]">MERN Stack Dev</p>
+                        
+                        <div class="mt-2 space-y-0.8 border-t border-teal-500/30 pt-1 text-[3.5px] text-teal-100">
+                            <p class="truncate">☎ +92 321 7778</p>
+                            <p class="truncate">✉ bilal@mern.dev</p>
+                            <p class="truncate">⌖ Peshawar, PK</p>
+                        </div>
+
+                        <div class="mt-2 space-y-0.8 border-t border-teal-500/30 pt-1">
+                            <p class="text-[3.8px] font-bold uppercase text-white">Skills</p>
+                            <div class="space-y-0.5">
+                                <div class="h-0.8 w-full rounded-full bg-[#003844]"><div class="h-full w-5/6 rounded-full bg-[#2dd4bf]"></div></div>
+                                <div class="h-0.8 w-full rounded-full bg-[#003844]"><div class="h-full w-4/5 rounded-full bg-[#2dd4bf]"></div></div>
+                                <div class="h-0.8 w-full rounded-full bg-[#003844]"><div class="h-full w-3/4 rounded-full bg-[#2dd4bf]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between p-1.5 text-[4px]">
+                    <div class="space-y-1.5">
+                        <div>
+                            <p class="font-bold uppercase text-[#005f73] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#005f73] text-[3px] text-white grid place-items-center">★</span> About Me</p>
+                            <p class="text-[3.5px] text-slate-500 line-clamp-2">Passionate MERN stack developer building responsive web applications.</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-[#005f73] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#005f73] text-[3px] text-white grid place-items-center">💼</span> Experience</p>
+                            <p class="font-bold text-slate-900 text-[4px]">MERN Developer</p>
+                            <p class="text-[3.2px] text-[#0a9396]">Web Solutions · 2023</p>
+                        </div>
+                        <div>
+                            <p class="font-bold uppercase text-[#005f73] text-[4.5px] flex items-center gap-0.5"><span class="h-1.5 w-1.5 rounded-2xs bg-[#005f73] text-[3px] text-white grid place-items-center">📁</span> Projects</p>
+                            <p class="text-[3.2px] text-slate-600">Social Media App · Realtime Chat</p>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full rounded-tl-full bg-[#2dd4bf]/30"></div>
+                </div>
+            </div>
+
         @endif
     </div>
 
@@ -486,6 +737,84 @@
             <div class="p-1 space-y-0.5 bg-slate-100">
                 <div class="h-2 rounded-2xs bg-[#0f172a]"></div>
                 <div class="h-2 rounded-2xs bg-[#0f172a]"></div>
+            </div>
+
+        @elseif ($slug === 'royal-blue-sidebar')
+            <div class="grid h-full grid-cols-[35%_65%]">
+                <div class="bg-[#0b325b] p-0.5 flex flex-col justify-between">
+                    <div class="mx-auto h-2 w-2 rounded-full border border-white/60 bg-[#1e4a78]"></div>
+                    <div class="space-y-0.5">
+                        <div class="h-0.5 w-full bg-[#00b4d8]"></div>
+                        <div class="h-0.5 w-3/4 bg-[#00b4d8]"></div>
+                    </div>
+                </div>
+                <div class="p-1 space-y-0.5">
+                    <div class="h-0.5 w-full bg-[#0b325b]"></div>
+                    <div class="h-1.5 w-full bg-slate-100 rounded-2xs"></div>
+                    <div class="h-1.5 w-full bg-slate-50 rounded-2xs"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'creative-purple-wave')
+            <div class="grid h-full grid-cols-[35%_65%]">
+                <div class="bg-[#faf5ff] border-r border-purple-100 p-0.5 flex flex-col justify-between">
+                    <div class="mx-auto h-2 w-2 rounded-full border border-[#a855f7] bg-purple-100"></div>
+                    <div class="space-y-0.5">
+                        <div class="h-0.5 w-full bg-[#9333ea]"></div>
+                        <div class="h-0.5 w-3/4 bg-purple-300"></div>
+                    </div>
+                </div>
+                <div class="p-1 space-y-0.5">
+                    <div class="h-0.5 w-full bg-[#6b21a8]"></div>
+                    <div class="h-1.5 w-full bg-slate-50 rounded-2xs"></div>
+                    <div class="h-1.5 w-full bg-purple-50 rounded-2xs"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'emerald-data-analyst')
+            <div class="h-3 bg-gradient-to-r from-emerald-100 to-teal-50 px-1 flex items-center justify-between border-b border-emerald-100">
+                <div class="h-2 w-2 rounded-full border border-[#10b981] bg-emerald-200"></div>
+                <div class="h-0.5 w-6 bg-[#059669]"></div>
+            </div>
+            <div class="grid grid-cols-2 p-1 gap-1">
+                <div class="space-y-0.5">
+                    <div class="h-0.5 w-full bg-[#059669]"></div>
+                    <div class="h-1 w-full bg-slate-100"></div>
+                </div>
+                <div class="space-y-0.5">
+                    <div class="h-0.5 w-full bg-[#059669]"></div>
+                    <div class="h-1 w-full bg-emerald-50"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'warm-amber-writer')
+            <div class="grid h-full grid-cols-[35%_65%]">
+                <div class="bg-[#fffbeb] border-r border-amber-200 p-0.5 flex flex-col justify-between">
+                    <div class="mx-auto h-2 w-2 rounded-full border border-amber-400 bg-amber-100"></div>
+                    <div class="space-y-0.5">
+                        <div class="h-0.5 w-full bg-[#ea580c]"></div>
+                        <div class="h-0.5 w-3/4 bg-amber-300"></div>
+                    </div>
+                </div>
+                <div class="p-1 space-y-0.5">
+                    <div class="h-0.5 w-full bg-slate-900"></div>
+                    <div class="h-1.5 w-full bg-amber-50/60 rounded-2xs border border-amber-100"></div>
+                </div>
+            </div>
+
+        @elseif ($slug === 'teal-developer-wave')
+            <div class="grid h-full grid-cols-[35%_65%]">
+                <div class="bg-[#005f73] p-0.5 flex flex-col justify-between">
+                    <div class="mx-auto h-2 w-2 rounded-full border border-[#2dd4bf] bg-[#0a9396]"></div>
+                    <div class="space-y-0.5">
+                        <div class="h-0.5 w-full bg-[#2dd4bf]"></div>
+                        <div class="h-0.5 w-3/4 bg-teal-300"></div>
+                    </div>
+                </div>
+                <div class="p-1 space-y-0.5">
+                    <div class="h-0.5 w-full bg-[#005f73]"></div>
+                    <div class="h-1.5 w-full bg-slate-50 rounded-2xs"></div>
+                </div>
             </div>
         @endif
     </div>

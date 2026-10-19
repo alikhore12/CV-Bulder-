@@ -259,6 +259,11 @@
                             'black-yellow-sidebar' => ['bg' => 'from-stone-950 to-amber-950/40', 'accent' => '#f4c400', 'badge' => 'Editorial Contrast'],
                             'minimal-dark-sidebar' => ['bg' => 'from-zinc-950 to-slate-900', 'accent' => '#64748b', 'badge' => 'Corporate Sidebar'],
                             'navy-blue-geometric' => ['bg' => 'from-indigo-950 to-slate-950', 'accent' => '#6366f1', 'badge' => 'Geometric Impact'],
+                            'royal-blue-sidebar' => ['bg' => 'from-blue-950 to-slate-950', 'accent' => '#00b4d8', 'badge' => 'Tech & IT Specialist'],
+                            'creative-purple-wave' => ['bg' => 'from-purple-950 to-slate-950', 'accent' => '#9333ea', 'badge' => 'UI/UX & Creative'],
+                            'emerald-data-analyst' => ['bg' => 'from-emerald-950 to-slate-950', 'accent' => '#10b981', 'badge' => 'Analytics & Finance'],
+                            'warm-amber-writer' => ['bg' => 'from-amber-950 to-stone-950', 'accent' => '#f59e0b', 'badge' => 'Content & Editorial'],
+                            'teal-developer-wave' => ['bg' => 'from-teal-950 to-cyan-950', 'accent' => '#2dd4bf', 'badge' => 'Software & Engineering'],
                         ];
                     @endphp
 

@@ -88,6 +88,11 @@ class CvTemplateSelectionTest extends TestCase
             'black-yellow-sidebar' => ['black-yellow-sidebar', 'gold-shape'],
             'minimal-dark-sidebar' => ['minimal-dark-sidebar', '222b38'],
             'navy-blue-geometric' => ['navy-blue-geometric', '073f56'],
+            'royal-blue-sidebar' => ['royal-blue-sidebar', 'royal-sidebar-layout'],
+            'creative-purple-wave' => ['creative-purple-wave', 'creative-purple-layout'],
+            'emerald-data-analyst' => ['emerald-data-analyst', 'emerald-analyst-layout'],
+            'warm-amber-writer' => ['warm-amber-writer', 'warm-amber-layout'],
+            'teal-developer-wave' => ['teal-developer-wave', 'teal-developer-layout'],
         ];
     }
 
